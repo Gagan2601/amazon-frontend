@@ -24,8 +24,6 @@ function Account({ data, setData }) {
       const updatedUserData = {
         name,
         email,
-        // Include newPassword if needed
-        // newPassword: newPassword,
       };
 
       const response = await fetch(apiUrl, {
@@ -54,6 +52,7 @@ function Account({ data, setData }) {
     localStorage.removeItem("userData");
     localStorage.setItem("isSignedIn", JSON.stringify(false));
     navigate("/");
+    window.location.reload();
   };
 
   return (

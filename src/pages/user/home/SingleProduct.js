@@ -14,7 +14,7 @@ import {
 } from "react-bootstrap";
 import Rating from "@mui/material/Rating";
 
-function SingleProduct({ updateCartCount, cartCount }) {
+function SingleProduct({ updateCartCount }) {
   const { productId } = useParams();
   const token = localStorage.getItem("token");
   const location = useLocation();
@@ -121,8 +121,7 @@ function SingleProduct({ updateCartCount, cartCount }) {
       if (!response.ok) {
         throw new Error("Failed to add the product to the cart");
       }
-      const newCartCount = cartCount + 1;
-      updateCartCount(newCartCount);
+      updateCartCount();
       setAddedToCart(true);
     } catch (error) {
       console.error("Error adding to cart:", error);

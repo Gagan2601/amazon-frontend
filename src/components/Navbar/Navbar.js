@@ -8,7 +8,7 @@ import Orders from "./Orders";
 import Cart from "./Cart";
 import LanguageDropdown from "./Language";
 
-function Navbar({ isSignedIn, data, saveAddress, address }) {
+function Navbar({ isSignedIn, data, saveAddress, address, cartCount }) {
   return (
     <nav className="navbar fixed-top bg-body-tertiary navbar-expand-lg navbar-dark bg-dark">
       <Logo />
@@ -35,7 +35,7 @@ function Navbar({ isSignedIn, data, saveAddress, address }) {
         <LanguageDropdown />
         <Account isSignedIn={isSignedIn} data={data} />
         <Orders />
-        <Cart />
+        <Cart cartCount={cartCount} />
       </div>
     </nav>
   );

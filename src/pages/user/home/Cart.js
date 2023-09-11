@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Container, Card, Button, ListGroup } from "react-bootstrap";
 
-function Cart() {
+function Cart({ updateCartCount }) {
   const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
@@ -42,6 +42,7 @@ function Cart() {
       });
       if (response.ok) {
         fetchCartData(token);
+        updateCartCount();
       }
     } catch (error) {
       console.error("Error removing from cart:", error);

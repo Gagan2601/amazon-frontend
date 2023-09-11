@@ -18,7 +18,14 @@ import SingleProduct from "./pages/user/home/SingleProduct";
 import Account from "./pages/user/home/Account";
 import Cart from "./pages/user/home/Cart";
 
-function DefaultLayout({ children, isSignedIn, saveAddress, data, address }) {
+function DefaultLayout({
+  children,
+  isSignedIn,
+  saveAddress,
+  data,
+  address,
+  cartCount,
+}) {
   return (
     <>
       <Navbar
@@ -26,6 +33,7 @@ function DefaultLayout({ children, isSignedIn, saveAddress, data, address }) {
         saveAddress={saveAddress}
         data={data}
         address={address}
+        cartCount={cartCount}
       />
       <LowerNavbar isSignedIn={isSignedIn} data={data} />
       {children}
@@ -47,8 +55,30 @@ function App() {
     setSaveAddress(true);
     setAddress(address);
   };
-  const updateCartCount = (count) => {
-    setCartCount(count);
+  const updateCartCount = async () => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      try {
+        const apiUrl = "http://localhost:5000/api/cart";
+        const response = await fetch(apiUrl, {
+          method: "GET",
+          headers: {
+            "auth-token": token,
+          },
+        });
+
+        if (response.ok) {
+          const cartData = await response.json();
+          const totalProductCount = calculateTotalProductCount(cartData.items);
+          setCartCount(totalProductCount);
+        }
+      } catch (error) {
+        console.error("Error fetching cart data:", error);
+      }
+    }
+  };
+  const calculateTotalProductCount = (cartItems) => {
+    return cartItems.slice(1).reduce((total, item) => total + item.quantity, 0);
   };
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -56,30 +86,9 @@ function App() {
     if (token && userData) {
       setIsSignedIn(true);
       setData(userData);
+      updateCartCount();
     }
   }, []);
-
-  const fetchUserData = async (token) => {
-    try {
-      if (data && data.entity && data.entity._id) {
-        const apiUrl = `http://localhost:5000/api/user/${data.entity._id}`;
-        const response = await fetch(apiUrl, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            "auth-token": token,
-          },
-        });
-
-        if (response.ok) {
-          const userData = await response.json();
-          setData(userData);
-        }
-      }
-    } catch (error) {
-      console.error("Error fetching user data:", error);
-    }
-  };
   return (
     <Router>
       <div className="App">
@@ -92,6 +101,7 @@ function App() {
                 saveAddress={saveAddress}
                 data={data}
                 address={address}
+                cartCount={cartCount}
               >
                 <HomePage />
               </DefaultLayout>
@@ -110,6 +120,7 @@ function App() {
                 saveAddress={saveAddress}
                 data={data}
                 address={address}
+                cartCount={cartCount}
               >
                 <SaveAddress onsaveAddress={handleSaveAddress} />
               </DefaultLayout>
@@ -123,6 +134,7 @@ function App() {
                 saveAddress={saveAddress}
                 data={data}
                 address={address}
+                cartCount={cartCount}
               >
                 <SearchResults />
               </DefaultLayout>
@@ -136,6 +148,7 @@ function App() {
                 saveAddress={saveAddress}
                 data={data}
                 address={address}
+                cartCount={cartCount}
               >
                 <SingleProduct updateCartCount={updateCartCount} />
               </DefaultLayout>
@@ -149,6 +162,7 @@ function App() {
                 saveAddress={saveAddress}
                 data={data}
                 address={address}
+                cartCount={cartCount}
               >
                 <Account data={data} setData={setData} />
               </DefaultLayout>
@@ -162,8 +176,9 @@ function App() {
                 saveAddress={saveAddress}
                 data={data}
                 address={address}
+                cartCount={cartCount}
               >
-                <Cart cartCount={cartCount} />
+                <Cart updateCartCount={updateCartCount} />
               </DefaultLayout>
             }
           />

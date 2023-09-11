@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import "./Cart.css";
 
 function Cart({ cartCount }) {
+  console.log(cartCount);
   return (
     <Link to="/user/cart" className="h-cart">
       <Icon path={mdiCartOutline} size={1.2} />

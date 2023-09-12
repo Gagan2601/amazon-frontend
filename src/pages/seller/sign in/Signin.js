@@ -3,7 +3,7 @@ import BrandLogo from "../../../assests/images/amazon-logo1.png";
 import { Link, useNavigate } from "react-router-dom";
 import "./Signin.css";
 
-function SellerSignIn({ country = "in", onSignIn }) {
+function SellerSignIn({ country = "in", onSignIn, setData }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   let navigate = useNavigate();
@@ -24,6 +24,8 @@ function SellerSignIn({ country = "in", onSignIn }) {
         console.log(data);
         localStorage.setItem("token", data.token);
         localStorage.setItem("seller_id", data.entity._id);
+        onSignIn(data);
+        setData(data);
         navigate("/seller");
       })
       .catch((error) => {

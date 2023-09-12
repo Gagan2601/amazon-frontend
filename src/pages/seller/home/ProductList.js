@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { Container, Card, Button, ListGroup, Alert } from "react-bootstrap";
 
 function ProductList() {
   const token = localStorage.getItem("token");
@@ -48,23 +49,35 @@ function ProductList() {
   };
 
   return (
-    <div>
+    <Container>
       <h2>Your Products</h2>
-      {error && <p>{error}</p>}
-      <ul>
+      {error && <Alert variant="danger">{error}</Alert>}
+      <ListGroup>
         {sellerProducts.map((product) => (
-          <li key={product._id}>
-            <h3>{product.title}</h3>
-            <p>Description: {product.description}</p>
-            <p>Price: ${product.discountedPrice}</p>
-            <button onClick={() => handleUpdateProduct(product)}>Update</button>
-            <button onClick={() => handleDeleteProduct(product._id)}>
-              Delete
-            </button>
-          </li>
+          <ListGroup.Item key={product._id}>
+            <Card>
+              <Card.Body>
+                <Card.Title>{product.title}</Card.Title>
+                <Card.Text>Description: {product.description}</Card.Text>
+                <Card.Text>Price: ${product.discountedPrice}</Card.Text>
+                <Button
+                  variant="primary"
+                  onClick={() => handleUpdateProduct(product)}
+                >
+                  Update
+                </Button>
+                <Button
+                  variant="danger"
+                  onClick={() => handleDeleteProduct(product._id)}
+                >
+                  Delete
+                </Button>
+              </Card.Body>
+            </Card>
+          </ListGroup.Item>
         ))}
-      </ul>
-    </div>
+      </ListGroup>
+    </Container>
   );
 }
 

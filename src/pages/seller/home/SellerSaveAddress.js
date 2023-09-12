@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container, Form, Button } from "react-bootstrap";
 
-function SaveAddress({ onsaveAddress }) {
+function SellerSaveAddress({ onsaveAddress }) {
   let navigate = useNavigate();
   const [address, setAddress] = useState({
     addressline1: "",
@@ -24,7 +24,7 @@ function SaveAddress({ onsaveAddress }) {
     const requestBody = {
       address: address,
     };
-    fetch("http://localhost:5000/api/user/save-address", {
+    fetch("http://localhost:5000/api/seller/save-address", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -35,7 +35,7 @@ function SaveAddress({ onsaveAddress }) {
       .then((response) => response.json())
       .then((data) => {
         onsaveAddress(data.address);
-        navigate("/");
+        navigate("/seller");
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -114,4 +114,4 @@ function SaveAddress({ onsaveAddress }) {
   );
 }
 
-export default SaveAddress;
+export default SellerSaveAddress;

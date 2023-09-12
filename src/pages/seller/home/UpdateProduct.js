@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
+import { Container, Form, Button, Alert } from "react-bootstrap";
 
 function UpdateProduct() {
   const location = useLocation();
@@ -51,66 +52,82 @@ function UpdateProduct() {
   };
 
   return (
-    <div>
+    <Container>
       <h2>Update Product</h2>
-      {error && <p>{error}</p>}
-      <form onSubmit={handleUpdateProduct}>
-        <label htmlFor="product-title">Product Title</label>
-        <input
-          type="text"
-          id="product-title"
-          value={productTitle}
-          onChange={(e) => setProductTitle(e.target.value)}
-        />
-        <label htmlFor="product-description">Product Description</label>
-        <input
-          type="text"
-          id="product-description"
-          value={productDescription}
-          onChange={(e) => setProductDescription(e.target.value)}
-        />
-        <label htmlFor="product-original-price">Product Original Price</label>
-        <input
-          type="text"
-          id="product-original-price"
-          value={productOriginalPrice}
-          onChange={(e) => setProductOriginalPrice(e.target.value)}
-        />
-        <label htmlFor="product-discounted-price">
-          Product Discounted Price
-        </label>
-        <input
-          type="text"
-          id="product-discounted-price"
-          value={productDiscountedPrice}
-          onChange={(e) => setProductDiscountedPrice(e.target.value)}
-        />
-        <label htmlFor="product-images">Product Images</label>
-        <input
-          type="url"
-          id="product-images"
-          value={productImages}
-          onChange={(e) => setProductImages([...productImages, e.target.value])}
-        />
-        <label htmlFor="product-quantity">Product Quantity</label>
-        <input
-          type="number"
-          id="product-quantity"
-          value={productQuantity}
-          min="1"
-          max="100"
-          onChange={(e) => setProductQuantity(e.target.value)}
-        />
-        <label htmlFor="product-catgeory">Product Category</label>
-        <input
-          type="text"
-          id="product-category"
-          value={productCategory}
-          onChange={(e) => setProductCategory(e.target.value)}
-        />
-        <button type="submit">Update Product</button>
-      </form>
-    </div>
+      {error && <Alert variant="danger">{error}</Alert>}
+      <Form onSubmit={handleUpdateProduct}>
+        <Form.Group controlId="product-title">
+          <Form.Label>Product Title</Form.Label>
+          <Form.Control
+            type="text"
+            value={productTitle}
+            onChange={(e) => setProductTitle(e.target.value)}
+          />
+        </Form.Group>
+
+        <Form.Group controlId="product-description">
+          <Form.Label>Product Description</Form.Label>
+          <Form.Control
+            type="text"
+            value={productDescription}
+            onChange={(e) => setProductDescription(e.target.value)}
+          />
+        </Form.Group>
+
+        <Form.Group controlId="product-original-price">
+          <Form.Label>Product Original Price</Form.Label>
+          <Form.Control
+            type="text"
+            value={productOriginalPrice}
+            onChange={(e) => setProductOriginalPrice(e.target.value)}
+          />
+        </Form.Group>
+
+        <Form.Group controlId="product-discounted-price">
+          <Form.Label>Product Discounted Price</Form.Label>
+          <Form.Control
+            type="text"
+            value={productDiscountedPrice}
+            onChange={(e) => setProductDiscountedPrice(e.target.value)}
+          />
+        </Form.Group>
+
+        <Form.Group controlId="product-images">
+          <Form.Label>Product Images</Form.Label>
+          <Form.Control
+            type="url"
+            value={productImages}
+            onChange={(e) =>
+              setProductImages([...productImages, e.target.value])
+            }
+          />
+        </Form.Group>
+
+        <Form.Group controlId="product-quantity">
+          <Form.Label>Product Quantity</Form.Label>
+          <Form.Control
+            type="number"
+            value={productQuantity}
+            min="1"
+            max="100"
+            onChange={(e) => setProductQuantity(e.target.value)}
+          />
+        </Form.Group>
+
+        <Form.Group controlId="product-category">
+          <Form.Label>Product Category</Form.Label>
+          <Form.Control
+            type="text"
+            value={productCategory}
+            onChange={(e) => setProductCategory(e.target.value)}
+          />
+        </Form.Group>
+
+        <Button variant="primary" type="submit">
+          Update Product
+        </Button>
+      </Form>
+    </Container>
   );
 }
 

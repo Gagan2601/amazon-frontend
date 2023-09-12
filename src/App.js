@@ -17,6 +17,8 @@ import SearchResults from "./pages/user/home/SearchResults";
 import SingleProduct from "./pages/user/home/SingleProduct";
 import Account from "./pages/user/home/Account";
 import Cart from "./pages/user/home/Cart";
+import SellerAccount from "./pages/seller/home/SellerAccount";
+import SellerSaveAddress from "./pages/seller/home/SellerSaveAddress";
 
 function DefaultLayout({
   children,
@@ -86,9 +88,13 @@ function App() {
     if (token && userData) {
       setIsSignedIn(true);
       setData(userData);
-      updateCartCount();
     }
   }, []);
+  useEffect(() => {
+    if (isSignedIn) {
+      updateCartCount();
+    }
+  }, [isSignedIn, data]);
   return (
     <Router>
       <div className="App">
@@ -183,13 +189,24 @@ function App() {
             }
           />
           <Route path="/seller/register" element={<SellerRegister />} />
-          <Route path="/seller/signin" element={<SellerSignIn />} />
-          <Route path="/seller/" element={<SellerHomePage />} />
+          <Route
+            path="/seller/signin"
+            element={<SellerSignIn onSignIn={handleSignIn} setData={setData} />}
+          />
+          <Route path="/seller/" element={<SellerHomePage data={data} />} />
           <Route path="/seller/add-product" element={<AddProduct />} />
           <Route path="/seller/products" element={<ProductList />} />
           <Route
             path="/seller/update-product/:productId"
             element={<UpdateProduct />}
+          />
+          <Route
+            path="/seller/account/:sellerId"
+            element={<SellerAccount data={data} setData={setData} />}
+          />
+          <Route
+            path="/seller/save-address"
+            element={<SellerSaveAddress onsaveAddress={handleSaveAddress} />}
           />
         </Routes>
       </div>

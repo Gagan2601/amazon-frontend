@@ -118,7 +118,7 @@ function SingleProduct({ updateCartCount }) {
         },
         body: JSON.stringify({ id: productId }),
       });
-      if (!response.ok) {
+      if (!response) {
         throw new Error("Failed to add the product to the cart");
       }
       updateCartCount();

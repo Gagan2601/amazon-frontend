@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import "./SearchResults.css";
 
 function SearchResults() {
@@ -10,6 +11,7 @@ function SearchResults() {
   const category = searchParams.get("category");
   const token = localStorage.getItem("token");
   const [products, setProducts] = useState([]);
+
   useEffect(() => {
     if (searchTerm !== undefined) {
       let apiUrl = `http://localhost:5000/api/products/search/${searchTerm}`;
@@ -37,35 +39,46 @@ function SearchResults() {
         });
     }
   }, [searchTerm, category, token]);
+
   const handleViewDetails = (product) => {
     navigate(`/product/${product._id}`, { state: { product } });
   };
+
   return (
-    <div>
+    <Container>
       {searchTerm ? (
         <>
           <h1>Search Results for "{searchTerm}"</h1>
-          <ul>
+          <Row>
             {products.map((product, index) => (
-              <li key={index}>
-                <p>Title: {product.title}</p>
-                <p>Description: {product.description}</p>
-                <img src={product.images} alt="product images" />
-                <button
-                  onClick={() => {
-                    handleViewDetails(product);
-                  }}
-                >
-                  View Details
-                </button>
-              </li>
+              <Col key={index} md={4}>
+                <Card>
+                  <Card.Img
+                    variant="top"
+                    src={product.images}
+                    alt="product images"
+                  />
+                  <Card.Body>
+                    <Card.Title>{product.title}</Card.Title>
+                    <Card.Text>{product.description}</Card.Text>
+                    <Button
+                      onClick={() => {
+                        handleViewDetails(product);
+                      }}
+                      variant="primary"
+                    >
+                      View Details
+                    </Button>
+                  </Card.Body>
+                </Card>
+              </Col>
             ))}
-          </ul>
+          </Row>
         </>
       ) : (
         <p>Please enter a search term.</p>
       )}
-    </div>
+    </Container>
   );
 }
 

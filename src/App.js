@@ -19,6 +19,9 @@ import Account from "./pages/user/home/Account";
 import Cart from "./pages/user/home/Cart";
 import SellerAccount from "./pages/seller/home/SellerAccount";
 import SellerSaveAddress from "./pages/seller/home/SellerSaveAddress";
+import AdminSignIn from "./pages/admin/sign in/Signin";
+import OrderPage from "./pages/user/home/Order";
+import MyOrders from "./pages/user/home/myOrders";
 
 function DefaultLayout({
   children,
@@ -80,7 +83,7 @@ function App() {
     }
   };
   const calculateTotalProductCount = (cartItems) => {
-    return cartItems.slice(1).reduce((total, item) => total + item.quantity, 0);
+    return cartItems.reduce((total, item) => total + item.quantity, 0);
   };
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -188,6 +191,21 @@ function App() {
               </DefaultLayout>
             }
           />
+          <Route
+            path="/user/orders"
+            element={
+              <DefaultLayout
+                isSignedIn={isSignedIn}
+                saveAddress={saveAddress}
+                data={data}
+                address={address}
+                cartCount={cartCount}
+              >
+                <MyOrders />
+              </DefaultLayout>
+            }
+          />
+          <Route path="/product/order" element={<OrderPage />} />
           <Route path="/seller/register" element={<SellerRegister />} />
           <Route
             path="/seller/signin"
@@ -207,6 +225,10 @@ function App() {
           <Route
             path="/seller/save-address"
             element={<SellerSaveAddress onsaveAddress={handleSaveAddress} />}
+          />
+          <Route
+            path="/admin/signin"
+            element={<AdminSignIn onSignIn={handleSignIn} setData={setData} />}
           />
         </Routes>
       </div>

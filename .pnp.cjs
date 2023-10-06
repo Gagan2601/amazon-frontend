@@ -34,6 +34,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@mdi/react", "npm:1.6.1"],\
             ["@mui/icons-material", "virtual:4173c36fd3fdbdd79a04a3131c6971a5e621d759b93d614e7aa3783570fb677f1d697e890a147b4cfb54ee9c28f8c26fed51cd848c07e8b4958f2898aefc7482#npm:5.14.3"],\
             ["@mui/material", "virtual:4173c36fd3fdbdd79a04a3131c6971a5e621d759b93d614e7aa3783570fb677f1d697e890a147b4cfb54ee9c28f8c26fed51cd848c07e8b4958f2898aefc7482#npm:5.14.5"],\
+            ["@stripe/react-stripe-js", "virtual:4173c36fd3fdbdd79a04a3131c6971a5e621d759b93d614e7aa3783570fb677f1d697e890a147b4cfb54ee9c28f8c26fed51cd848c07e8b4958f2898aefc7482#npm:2.3.0"],\
+            ["@stripe/stripe-js", "npm:2.1.5"],\
             ["@testing-library/jest-dom", "npm:5.17.0"],\
             ["@testing-library/react", "virtual:4173c36fd3fdbdd79a04a3131c6971a5e621d759b93d614e7aa3783570fb677f1d697e890a147b4cfb54ee9c28f8c26fed51cd848c07e8b4958f2898aefc7482#npm:13.4.0"],\
             ["@testing-library/user-event", "virtual:4173c36fd3fdbdd79a04a3131c6971a5e621d759b93d614e7aa3783570fb677f1d697e890a147b4cfb54ee9c28f8c26fed51cd848c07e8b4958f2898aefc7482#npm:13.5.0"],\
@@ -44,6 +46,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react-icons", "virtual:4173c36fd3fdbdd79a04a3131c6971a5e621d759b93d614e7aa3783570fb677f1d697e890a147b4cfb54ee9c28f8c26fed51cd848c07e8b4958f2898aefc7482#npm:4.10.1"],\
             ["react-router-dom", "virtual:4173c36fd3fdbdd79a04a3131c6971a5e621d759b93d614e7aa3783570fb677f1d697e890a147b4cfb54ee9c28f8c26fed51cd848c07e8b4958f2898aefc7482#npm:6.15.0"],\
             ["react-scripts", "virtual:4173c36fd3fdbdd79a04a3131c6971a5e621d759b93d614e7aa3783570fb677f1d697e890a147b4cfb54ee9c28f8c26fed51cd848c07e8b4958f2898aefc7482#npm:5.0.1"],\
+            ["stripe", "npm:13.6.0"],\
             ["web-vitals", "npm:2.1.4"]\
           ],\
           "linkType": "SOFT"\
@@ -4827,6 +4830,46 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["@stripe/react-stripe-js", [\
+        ["npm:2.3.0", {\
+          "packageLocation": "./.yarn/cache/@stripe-react-stripe-js-npm-2.3.0-0a330dcaa3-6deaeb4e7f.zip/node_modules/@stripe/react-stripe-js/",\
+          "packageDependencies": [\
+            ["@stripe/react-stripe-js", "npm:2.3.0"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:4173c36fd3fdbdd79a04a3131c6971a5e621d759b93d614e7aa3783570fb677f1d697e890a147b4cfb54ee9c28f8c26fed51cd848c07e8b4958f2898aefc7482#npm:2.3.0", {\
+          "packageLocation": "./.yarn/__virtual__/@stripe-react-stripe-js-virtual-fc37ae7a29/0/cache/@stripe-react-stripe-js-npm-2.3.0-0a330dcaa3-6deaeb4e7f.zip/node_modules/@stripe/react-stripe-js/",\
+          "packageDependencies": [\
+            ["@stripe/react-stripe-js", "virtual:4173c36fd3fdbdd79a04a3131c6971a5e621d759b93d614e7aa3783570fb677f1d697e890a147b4cfb54ee9c28f8c26fed51cd848c07e8b4958f2898aefc7482#npm:2.3.0"],\
+            ["@stripe/stripe-js", "npm:2.1.5"],\
+            ["@types/react", null],\
+            ["@types/react-dom", null],\
+            ["@types/stripe__stripe-js", null],\
+            ["prop-types", "npm:15.8.1"],\
+            ["react", "npm:18.2.0"],\
+            ["react-dom", "virtual:4173c36fd3fdbdd79a04a3131c6971a5e621d759b93d614e7aa3783570fb677f1d697e890a147b4cfb54ee9c28f8c26fed51cd848c07e8b4958f2898aefc7482#npm:18.2.0"]\
+          ],\
+          "packagePeers": [\
+            "@stripe/stripe-js",\
+            "@types/react-dom",\
+            "@types/react",\
+            "@types/stripe__stripe-js",\
+            "react-dom",\
+            "react"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@stripe/stripe-js", [\
+        ["npm:2.1.5", {\
+          "packageLocation": "./.yarn/cache/@stripe-stripe-js-npm-2.1.5-7dfb0ac8a1-db7868c0f9.zip/node_modules/@stripe/stripe-js/",\
+          "packageDependencies": [\
+            ["@stripe/stripe-js", "npm:2.1.5"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["@surma/rollup-plugin-off-main-thread", [\
         ["npm:2.2.3", {\
           "packageLocation": "./.yarn/cache/@surma-rollup-plugin-off-main-thread-npm-2.2.3-1f57d3eded-2c02134944.zip/node_modules/@surma/rollup-plugin-off-main-thread/",\
@@ -5390,6 +5433,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@types-node-npm-20.5.2-f52380ca51-46d032bb9a.zip/node_modules/@types/node/",\
           "packageDependencies": [\
             ["@types/node", "npm:20.5.2"]\
+          ],\
+          "linkType": "HARD"\
+        }],\
+        ["npm:20.6.2", {\
+          "packageLocation": "./.yarn/cache/@types-node-npm-20.6.2-bff5d8378f-96fe530387.zip/node_modules/@types/node/",\
+          "packageDependencies": [\
+            ["@types/node", "npm:20.6.2"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -6316,6 +6366,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@mdi/react", "npm:1.6.1"],\
             ["@mui/icons-material", "virtual:4173c36fd3fdbdd79a04a3131c6971a5e621d759b93d614e7aa3783570fb677f1d697e890a147b4cfb54ee9c28f8c26fed51cd848c07e8b4958f2898aefc7482#npm:5.14.3"],\
             ["@mui/material", "virtual:4173c36fd3fdbdd79a04a3131c6971a5e621d759b93d614e7aa3783570fb677f1d697e890a147b4cfb54ee9c28f8c26fed51cd848c07e8b4958f2898aefc7482#npm:5.14.5"],\
+            ["@stripe/react-stripe-js", "virtual:4173c36fd3fdbdd79a04a3131c6971a5e621d759b93d614e7aa3783570fb677f1d697e890a147b4cfb54ee9c28f8c26fed51cd848c07e8b4958f2898aefc7482#npm:2.3.0"],\
+            ["@stripe/stripe-js", "npm:2.1.5"],\
             ["@testing-library/jest-dom", "npm:5.17.0"],\
             ["@testing-library/react", "virtual:4173c36fd3fdbdd79a04a3131c6971a5e621d759b93d614e7aa3783570fb677f1d697e890a147b4cfb54ee9c28f8c26fed51cd848c07e8b4958f2898aefc7482#npm:13.4.0"],\
             ["@testing-library/user-event", "virtual:4173c36fd3fdbdd79a04a3131c6971a5e621d759b93d614e7aa3783570fb677f1d697e890a147b4cfb54ee9c28f8c26fed51cd848c07e8b4958f2898aefc7482#npm:13.5.0"],\
@@ -6326,6 +6378,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react-icons", "virtual:4173c36fd3fdbdd79a04a3131c6971a5e621d759b93d614e7aa3783570fb677f1d697e890a147b4cfb54ee9c28f8c26fed51cd848c07e8b4958f2898aefc7482#npm:4.10.1"],\
             ["react-router-dom", "virtual:4173c36fd3fdbdd79a04a3131c6971a5e621d759b93d614e7aa3783570fb677f1d697e890a147b4cfb54ee9c28f8c26fed51cd848c07e8b4958f2898aefc7482#npm:6.15.0"],\
             ["react-scripts", "virtual:4173c36fd3fdbdd79a04a3131c6971a5e621d759b93d614e7aa3783570fb677f1d697e890a147b4cfb54ee9c28f8c26fed51cd848c07e8b4958f2898aefc7482#npm:5.0.1"],\
+            ["stripe", "npm:13.6.0"],\
             ["web-vitals", "npm:2.1.4"]\
           ],\
           "linkType": "SOFT"\
@@ -15650,6 +15703,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["side-channel", "npm:1.0.4"]\
           ],\
           "linkType": "HARD"\
+        }],\
+        ["npm:6.11.2", {\
+          "packageLocation": "./.yarn/cache/qs-npm-6.11.2-b118bc1c6f-e812f3c590.zip/node_modules/qs/",\
+          "packageDependencies": [\
+            ["qs", "npm:6.11.2"],\
+            ["side-channel", "npm:1.0.4"]\
+          ],\
+          "linkType": "HARD"\
         }]\
       ]],\
       ["querystringify", [\
@@ -17293,6 +17354,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/strip-json-comments-npm-3.1.1-dcb2324823-492f73e272.zip/node_modules/strip-json-comments/",\
           "packageDependencies": [\
             ["strip-json-comments", "npm:3.1.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["stripe", [\
+        ["npm:13.6.0", {\
+          "packageLocation": "./.yarn/cache/stripe-npm-13.6.0-7a0f1874d1-5313fd88ae.zip/node_modules/stripe/",\
+          "packageDependencies": [\
+            ["stripe", "npm:13.6.0"],\
+            ["@types/node", "npm:20.6.2"],\
+            ["qs", "npm:6.11.2"]\
           ],\
           "linkType": "HARD"\
         }]\

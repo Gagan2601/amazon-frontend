@@ -1,8 +1,35 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Card, Button, Container, Row, Col } from "react-bootstrap";
+import Notification from "./Notification";
 
 function SellerHomePage({ data }) {
+  const [notifications, setNotifications] = useState([]);
+  const token = localStorage.getItem("token");
+  useEffect(() => {
+    const fetchNotifications = async () => {
+      try {
+        const response = await fetch(
+          "http://localhost:5000/api/seller/notifications",
+          {
+            method: "GET",
+            headers: {
+              "auth-token": token,
+            },
+          }
+        );
+        if (response.ok) {
+          const productData = await response.json();
+          setNotifications(productData);
+        } else {
+          console.error("Failed to fetch notifications");
+        }
+      } catch (error) {
+        console.error("Error fetching notifications", error);
+      }
+    };
+    fetchNotifications();
+  }, []);
   return (
     <Container>
       <Row className="mt-4">
@@ -58,6 +85,11 @@ function SellerHomePage({ data }) {
               </Link>
             </Card.Body>
           </Card>
+        </Col>
+      </Row>
+      <Row className="mt-4">
+        <Col>
+          <Notification notifications={notifications} />
         </Col>
       </Row>
     </Container>

@@ -17,8 +17,7 @@ import Rating from "@mui/material/Rating";
 function SingleProduct({ updateCartCount }) {
   const { productId } = useParams();
   const token = localStorage.getItem("token");
-  const location = useLocation();
-  const { product } = location.state || {};
+  const [product, setProduct] = useState(null);
   const [reviews, setReviews] = useState([]);
   const [userReview, setUserReview] = useState({
     rating: 0,
@@ -37,6 +36,29 @@ function SingleProduct({ updateCartCount }) {
   };
 
   useEffect(() => {
+    async function fetchProductDetails() {
+      try {
+        const response = await fetch(`http://localhost:5000/api/products/${productId}`, {
+          method: "GET",
+          headers: {
+            "auth-token": token,
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch product details");
+        }
+
+        const data = await response.json();
+        setProduct(data);
+      } catch (error) {
+        console.error("Error fetching product details:", error);
+      }
+    }
+
+    if (productId) {
+      fetchProductDetails();
+    }
     async function fetchReviews() {
       try {
         const response = await fetch(

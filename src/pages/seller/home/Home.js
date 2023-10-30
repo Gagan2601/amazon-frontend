@@ -86,6 +86,17 @@ function SellerHomePage({ data }) {
             </Card.Body>
           </Card>
         </Col>
+        <Col>
+          <Card>
+            <Card.Body>
+              <Card.Title>Orders</Card.Title>
+              <Card.Text>Check who ordered your products.</Card.Text>
+              <Link to="/seller/orders">
+                <Button variant="primary">Seller Orders</Button>
+              </Link>
+            </Card.Body>
+          </Card>
+        </Col>
       </Row>
       <Row className="mt-4">
         <Col>

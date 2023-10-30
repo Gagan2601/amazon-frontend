@@ -41,7 +41,7 @@ function SearchResults() {
   }, [searchTerm, category, token]);
 
   const handleViewDetails = (product) => {
-    navigate(`/product/${product._id}`, { state: { product } });
+    navigate(`/products/${product._id}`, { state: { product } });
   };
 
   return (

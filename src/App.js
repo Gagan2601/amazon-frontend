@@ -22,6 +22,7 @@ import SellerSaveAddress from "./pages/seller/home/SellerSaveAddress";
 import AdminSignIn from "./pages/admin/sign in/Signin";
 import OrderPage from "./pages/user/home/Order";
 import MyOrders from "./pages/user/home/myOrders";
+import SellerOrders from "./pages/seller/home/SellerOrders";
 
 function DefaultLayout({
   children,
@@ -150,7 +151,7 @@ function App() {
             }
           />
           <Route
-            path="/product/:productId"
+            path="/products/:productId"
             element={
               <DefaultLayout
                 isSignedIn={isSignedIn}
@@ -225,6 +226,10 @@ function App() {
           <Route
             path="/seller/save-address"
             element={<SellerSaveAddress onsaveAddress={handleSaveAddress} />}
+          />
+          <Route
+            path="/seller/orders"
+            element={<SellerOrders />}
           />
           <Route
             path="/admin/signin"

@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 function MyOrders() {
   const [orders, setOrders] = useState([]);
   const token = localStorage.getItem("token");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -51,6 +53,10 @@ function MyOrders() {
     }
   };
 
+  const viewProduct = (productId) => {
+    navigate(`/products/${productId}`);
+  };
+
   return (
     <Container className="orders-container">
       <h1>My Orders</h1>
@@ -65,6 +71,12 @@ function MyOrders() {
                 <p>Status: {order.status}</p>
                 <p>Total Price: ${order.totalPrice}</p>
                 <p>Shipping Address: {order.shippingAddress}</p>
+                <Button
+                  variant="info"
+                  onClick={() => viewProduct(order.products[0].product)}
+                >
+                  View Product
+                </Button>
                 <Button variant="danger" onClick={() => cancelOrder(order._id)}>
                   Cancel Order
                 </Button>

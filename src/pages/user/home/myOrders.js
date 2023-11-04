@@ -14,7 +14,7 @@ function MyOrders() {
         const response = await fetch(apiUrl, {
           headers: {
             "Content-Type": "application/json",
-            "auth-token": token,
+            'Authorization': `Bearer ${token}`,
           },
         });
 
@@ -39,7 +39,7 @@ function MyOrders() {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
-          "auth-token": token,
+          'Authorization': `Bearer ${token}`,
         },
       });
 
@@ -58,7 +58,7 @@ function MyOrders() {
   };
 
   return (
-    <Container className="orders-container">
+    <Container className="orders-container" style={{marginTop: '60px'}}>
       <h1>My Orders</h1>
       <Row>
         {orders.map((order) => (

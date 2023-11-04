@@ -25,7 +25,7 @@ function Cart({ updateCartCount }) {
       const response = await fetch(apiUrl, {
         method: "GET",
         headers: {
-          "auth-token": token,
+          'Authorization': `Bearer ${token}`,
         },
       });
 
@@ -45,7 +45,7 @@ function Cart({ updateCartCount }) {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
-          "auth-token": token,
+          'Authorization': `Bearer ${token}`,
         },
       });
       if (response.ok) {
@@ -64,7 +64,7 @@ function Cart({ updateCartCount }) {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "auth-token": token,
+          'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify({ productId, quantity }),
       });
@@ -92,7 +92,7 @@ function Cart({ updateCartCount }) {
   };
 
   return (
-    <Container>
+    <Container style={{marginTop: '60px'}}>
       <h2>Your Cart</h2>
       {cartItems.map((item) => (
         <Card key={item._id} className="mb-3">

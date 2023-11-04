@@ -2,6 +2,7 @@
   position: relative;
   transform: translate(0, -110%);
   z-index: 2;
+  height: 400px;
 }
 
 .card-img-container {
@@ -20,8 +21,8 @@
 
 .single-img-card-img {
   width: 100%;
-  height: auto;
-  max-height: 285px;
+  height: 100%;
+  max-height: 400px;
   padding: 4px;
   box-sizing: border-box;
 }

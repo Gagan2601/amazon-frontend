@@ -41,7 +41,7 @@ function SingleProduct({ updateCartCount }) {
         const response = await fetch(`http://localhost:5000/api/products/${productId}`, {
           method: "GET",
           headers: {
-            "auth-token": token,
+            'Authorization': `Bearer ${token}`,
           },
         });
 
@@ -66,7 +66,7 @@ function SingleProduct({ updateCartCount }) {
           {
             method: "GET",
             headers: {
-              "auth-token": token,
+              'Authorization': `Bearer ${token}`,
             },
           }
         );
@@ -106,7 +106,7 @@ function SingleProduct({ updateCartCount }) {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "auth-token": token,
+          'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify(reviewData),
       });
@@ -136,7 +136,7 @@ function SingleProduct({ updateCartCount }) {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "auth-token": token,
+          'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify({ id: productId }),
       });
@@ -150,7 +150,8 @@ function SingleProduct({ updateCartCount }) {
     }
   };
   return (
-    <Container>
+    <Container style={{marginTop: '60px'}}>
+      <h1>Product Details</h1>
       <Row>
         <Col md={6}>
           <Carousel>

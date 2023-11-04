@@ -7,8 +7,8 @@ function Account({ data, setData }) {
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
   const { userId } = useParams();
-  const [name, setName] = useState(data.entity.name);
-  const [email, setEmail] = useState(data.entity.email);
+  const [name, setName] = useState(data.name);
+  const [email, setEmail] = useState(data.email);
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -30,14 +30,14 @@ function Account({ data, setData }) {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
-          "auth-token": token,
+          'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify(updatedUserData),
       });
 
       if (response.ok) {
         console.log("User info updated successfully");
-        setData({ entity: { ...data.entity, name, email } });
+        setData({ entity: { ...data.data, name, email } });
       } else {
         const errorData = await response.json();
         console.error("Error updating user info:", errorData.message);
@@ -49,14 +49,14 @@ function Account({ data, setData }) {
 
   const handleSignOut = () => {
     localStorage.removeItem("token");
-    localStorage.removeItem("userData");
+    localStorage.removeItem("userId");
     localStorage.setItem("isSignedIn", JSON.stringify(false));
     navigate("/");
     window.location.reload();
   };
 
   return (
-    <Container className="account-container">
+    <Container className="account-container" style={{marginTop: '60px'}}>
       <h1>My Account</h1>
       <Row>
         <Col md={6}>

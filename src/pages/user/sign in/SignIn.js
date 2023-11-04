@@ -22,12 +22,13 @@ function SignIn({ country = "in", onSignIn, setData }) {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        localStorage.setItem("token", data.token);
-        localStorage.setItem("userData", JSON.stringify(data));
+        localStorage.setItem("token", data.data.access_token);
+        localStorage.setItem("userId", data.data._id);
         localStorage.setItem("isSignedIn", JSON.stringify(true));
         onSignIn(data);
         setData(data);
         navigate("/");
+        window.location.reload();
       })
       .catch((error) => {
         console.error(error);

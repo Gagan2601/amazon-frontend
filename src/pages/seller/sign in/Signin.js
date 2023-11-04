@@ -22,8 +22,8 @@ function SellerSignIn({ country = "in", onSignIn, setData }) {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        localStorage.setItem("token", data.token);
-        localStorage.setItem("seller_id", data.entity._id);
+        localStorage.setItem("token", data.data.access_token);
+        localStorage.setItem("seller_id", data.data._id);
         onSignIn(data);
         setData(data);
         navigate("/seller");

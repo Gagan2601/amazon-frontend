@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
+import UpdateOrderStatus from "./UpdateOrderStatus";
 
 function SellerOrders() {
   const [sellerOrders, setSellerOrders] = useState([]);
@@ -11,7 +12,7 @@ function SellerOrders() {
         const response = await fetch("http://localhost:5000/api/sellers/orders", {
           method: "GET",
           headers: {
-            "auth-token": token,
+            'Authorization': `Bearer ${token}`,
           },
         });
 
@@ -54,6 +55,8 @@ function SellerOrders() {
                       </li>
                     ))}
                   </ul>
+                  Status: {order.status}
+                  <UpdateOrderStatus orderId={order._id} />
                 </Card.Text>
               </Card.Body>
             </Card>

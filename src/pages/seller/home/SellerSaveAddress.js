@@ -28,7 +28,7 @@ function SellerSaveAddress({ onsaveAddress }) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "auth-token": token,
+        'Authorization': `Bearer ${token}`,
       },
       body: JSON.stringify(requestBody),
     })

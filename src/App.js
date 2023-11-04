@@ -33,7 +33,7 @@ function DefaultLayout({
   cartCount,
 }) {
   return (
-    <>
+    <div className={`space-after-navbar ${isSignedIn ? 'signed-in' : ''}`}>
       <Navbar
         isSignedIn={isSignedIn}
         saveAddress={saveAddress}
@@ -43,7 +43,7 @@ function DefaultLayout({
       />
       <LowerNavbar isSignedIn={isSignedIn} data={data} />
       {children}
-    </>
+    </div>
   );
 }
 
@@ -69,7 +69,7 @@ function App() {
         const response = await fetch(apiUrl, {
           method: "GET",
           headers: {
-            "auth-token": token,
+            'Authorization': `Bearer ${token}`,
           },
         });
 
@@ -88,10 +88,27 @@ function App() {
   };
   useEffect(() => {
     const token = localStorage.getItem("token");
-    const userData = JSON.parse(localStorage.getItem("userData"));
-    if (token && userData) {
-      setIsSignedIn(true);
-      setData(userData);
+    const userId = localStorage.getItem("userId");
+    if (token && userId) {
+      fetch(`http://localhost:5000/api/user/${userId}`, {
+        method: "GET",
+        headers: {
+          'Authorization': `Bearer ${token}`, 
+        },
+      })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to fetch user data");
+        }
+        return response.json();
+      })
+      .then((userData) => {
+        setIsSignedIn(true);
+        setData(userData);
+      })
+      .catch((error) => {
+        console.error("Error fetching user data:", error);
+      });
     }
   }, []);
   useEffect(() => {

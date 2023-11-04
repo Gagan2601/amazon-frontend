@@ -8,13 +8,13 @@ import "./Account.css";
 function Account({ isSignedIn, data }) {
   return (
     <Link
-      to={isSignedIn ? `user/account/${data.entity._id}` : "/user/signin"}
+      to={isSignedIn ? `user/account/${data._id}` : "/user/signin"}
       className="link"
     >
       <div className="account">
         <div className="account_hint">
-          {isSignedIn
-            ? `Hello, ${data.entity.name.split(" ", 1)}`
+          {isSignedIn && data && data.name 
+            ? `Hello, ${data.name.split(" ", 1)}`
             : "Hello, Sign in"}
         </div>
         <div className="account_title">

@@ -7,8 +7,8 @@ function SellerAccount({ data, setData }) {
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
   const { sellerId } = useParams();
-  const [name, setName] = useState(data.entity.name);
-  const [email, setEmail] = useState(data.entity.email);
+  const [name, setName] = useState(data.name || "");
+  const [email, setEmail] = useState(data.email || "");
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -30,14 +30,14 @@ function SellerAccount({ data, setData }) {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
-          "auth-token": token,
+          'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify(updatedSellerData),
       });
 
       if (response.ok) {
         console.log("Seller info updated successfully");
-        setData({ entity: { ...data.entity, name, email } });
+        setData({ entity: { ...data.data, name, email } });
       } else {
         const errorData = await response.json();
         console.error("Error updating user info:", errorData.message);

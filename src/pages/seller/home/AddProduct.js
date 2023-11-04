@@ -18,7 +18,7 @@ function AddProduct() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "auth-token": token,
+        'Authorization': `Bearer ${token}`,
       },
       body: JSON.stringify({
         title: productTitle,

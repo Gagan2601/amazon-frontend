@@ -1,12 +1,28 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import "./LowerNavbar.css";
 import { CgProfile } from "react-icons/cg";
 import Icon from "@mdi/react";
 import { mdiMenuDown } from "@mdi/js";
 
 function LowerNavbar({ isSignedIn, data }) {
+  const [isVisible, setIsVisible] = useState(true);
+
+  useEffect(() => {
+    const updateVisibility = () => {
+      if (window.innerWidth < 1890) {
+        setIsVisible(false);
+      } else {
+        setIsVisible(true);
+      }
+    };
+    updateVisibility();
+    window.addEventListener('resize', updateVisibility);
+    return () => {
+      window.removeEventListener('resize', updateVisibility);
+    };
+  }, []);
   return (
-    <nav className="navbar navbar-dark lowernavbar">
+    <nav className={`navbar navbar-dark lowernavbar${isVisible ? '' : ' hidden'}`}>
       <div className="container-fluid">
         <button
           className="navbar-toggler lowernavbar-toggler"
@@ -73,8 +89,8 @@ function LowerNavbar({ isSignedIn, data }) {
           <div className="offcanvas-header">
             <h5 className="offcanvas-title" id="offcanvasLightNavbarLabel">
               <CgProfile size={30} />
-              {isSignedIn
-                ? `Hello, ${data.entity.name.split(" ", 1)}`
+              {isSignedIn && data && data.name
+                ? `Hello, ${data.name.split(" ", 1)}`
                 : "Hello, Sign in"}
             </h5>
             <button

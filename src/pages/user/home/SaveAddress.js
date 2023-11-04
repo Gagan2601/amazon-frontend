@@ -28,7 +28,7 @@ function SaveAddress({ onsaveAddress }) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "auth-token": token,
+        'Authorization': `Bearer ${token}`,
       },
       body: JSON.stringify(requestBody),
     })
@@ -43,7 +43,7 @@ function SaveAddress({ onsaveAddress }) {
   };
 
   return (
-    <Container>
+    <Container style={{marginTop: '60px'}}>
       <h2>Save Address</h2>
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="addressline1">

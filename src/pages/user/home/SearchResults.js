@@ -22,7 +22,7 @@ function SearchResults() {
       fetch(apiUrl, {
         method: "GET",
         headers: {
-          "auth-token": token,
+          'Authorization': `Bearer ${token}`,
         },
       })
         .then((response) => {
@@ -45,7 +45,7 @@ function SearchResults() {
   };
 
   return (
-    <Container>
+    <Container style={{marginTop: '60px'}}>
       {searchTerm ? (
         <>
           <h1>Search Results for "{searchTerm}"</h1>

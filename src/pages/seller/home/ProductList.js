@@ -13,7 +13,7 @@ function ProductList() {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "auth-token": token,
+        'Authorization': `Bearer ${token}`,
       },
     })
       .then((response) => response.json())
@@ -34,7 +34,7 @@ function ProductList() {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        "auth-token": token,
+        'Authorization': `Bearer ${token}`,
       },
     })
       .then((response) => response.json())

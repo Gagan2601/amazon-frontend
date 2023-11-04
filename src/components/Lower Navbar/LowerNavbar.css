@@ -4,6 +4,10 @@
   overflow: hidden; /* Hide horizontal overflow */
 }
 
+.hidden {
+  display: none !important;
+}
+
 .lowernavbar-content {
   display: flex;
   justify-content: flex-start;

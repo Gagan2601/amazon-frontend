@@ -29,7 +29,7 @@ function UpdateProduct() {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        "auth-token": token,
+        'Authorization': `Bearer ${token}`,
       },
       body: JSON.stringify({
         title: productTitle,

@@ -6,6 +6,7 @@ import Notification from "./Notification";
 function SellerHomePage({ data }) {
   const [notifications, setNotifications] = useState([]);
   const token = localStorage.getItem("token");
+  console.log(data);
   useEffect(() => {
     const fetchNotifications = async () => {
       try {
@@ -14,7 +15,7 @@ function SellerHomePage({ data }) {
           {
             method: "GET",
             headers: {
-              "auth-token": token,
+              'Authorization': `Bearer ${token}`, 
             },
           }
         );
@@ -67,7 +68,7 @@ function SellerHomePage({ data }) {
             <Card.Body>
               <Card.Title>Account</Card.Title>
               <Card.Text>Manage your seller account settings.</Card.Text>
-              <Link to={`/seller/account/${data.entity._id}`}>
+              <Link to={`/seller/account/${data._id}`}>
                 <Button variant="primary">Account</Button>
               </Link>
             </Card.Body>
